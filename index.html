@@ -15,7 +15,7 @@
         <div><a href="#">QuizApp</a></div>
         <div>
           <ul>
-            <li><a href="#welcomeSection">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li><a href="#questionSection">Questions</a></li>
             <li><a href="#results">Leaderboard</a></li>
           </ul>
@@ -25,7 +25,7 @@
     </nav>
   </header>
 
-  <section id="welcomeSection" style="display: none;">
+  <section id="welcomeSection">
     <div class="container welcome-div" id="description">
       <div>
         <h1>Quiz App</h1>
@@ -41,11 +41,14 @@
       </div>
       <div>
         <button type="button">Leaderboard</button>
-        <button type="button">Start Game</button>
+        <button type="button" id="startGameButton">Start Game</button>
+      </div>
+      <div id="enterNameForm">
+        <input type="text" name="name" placeholder="Your Name !!" id="inputUserName">
+        <button id="goButton">Go</button>
       </div>
     </div>
   </section>
-
   <section id="questionSection" class="container">
     <div class="questions-container">
       <div id="question">
@@ -61,8 +64,9 @@
   </section>
 
   <section id="results">
-
   </section>
+
+
 
   <script src="./index.js"></script>
 </body>
