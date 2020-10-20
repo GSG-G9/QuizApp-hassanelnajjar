@@ -25,15 +25,19 @@
     </nav>
   </header>
 
-  <section id="welcomeSection">
+  <section id="welcomeSection" style="display: none;">
     <div class="container welcome-div" id="description">
       <div>
         <h1>Quiz App</h1>
       </div>
       <div>
         <p>A quiz is a form of game or mind sport in which players attempt to answer questions correctly. It is a game
-          to test knowledge about a certain subject. In some countries, a quiz is also a brief assessment used in
-          education and similar fields to measure growth in knowledge, abilities, and/or skills.</p>
+          to test knowledge about a certain subject. In this App ,there are 10 short question - Just press on
+          <strong>Start Game</strong>
+          and enjoy :)
+          <!-- In some countries, a quiz is also a brief assessment used in
+          education and similar fields to measure growth in knowledge, abilities, and/or skills. -->
+        </p>
       </div>
       <div>
         <button type="button">Leaderboard</button>
@@ -42,9 +46,10 @@
     </div>
   </section>
 
-  <section id="questionSection">
-    <div class="container">
-      <div id="question"></div>
+  <section id="questionSection" class="container">
+    <div class="questions-container">
+      <div id="question">
+      </div>
       <div id="answers">
         <button type="button" id="0"></button>
         <button type="button" id="1"></button>

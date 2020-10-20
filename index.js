@@ -1,7 +1,13 @@
 let data = [
 	{
-		question: "First Question",
-		answers: ["a", "b", "c", "d"],
+		question:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsum nobis, molestias debitis temporibus eius dolore natus quibusdam minus ratione.",
+		answers: [
+			"asdsda wdaw dawdwdw aad",
+			"bwadwaadwa d",
+			"wadawd wadwda",
+			"dawdawd wadawf",
+		],
 		correctAnswer: "a",
 	},
 	{
