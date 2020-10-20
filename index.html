@@ -9,18 +9,55 @@
 </head>
 
 <body>
-  <div class="container">
-    <div id="question"></div>
-    <div id="answers">
-      <button type="button" id="0"></button>
-      <button type="button" id="1"></button>
-      <button type="button" id="2"></button>
-      <button type="button" id="3"></button>
+  <header>
+    <nav>
+      <div class="container">
+        <div><a href="#">QuizApp</a></div>
+        <div>
+          <ul>
+            <li><a href="#welcomeSection">Home</a></li>
+            <li><a href="#questionSection">Questions</a></li>
+            <li><a href="#results">Leaderboard</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </nav>
+  </header>
+
+  <section id="welcomeSection">
+    <div class="container welcome-div" id="description">
+      <div>
+        <h1>Quiz App</h1>
+      </div>
+      <div>
+        <p>A quiz is a form of game or mind sport in which players attempt to answer questions correctly. It is a game
+          to test knowledge about a certain subject. In some countries, a quiz is also a brief assessment used in
+          education and similar fields to measure growth in knowledge, abilities, and/or skills.</p>
+      </div>
+      <div>
+        <button type="button">Leaderboard</button>
+        <button type="button">Start Game</button>
+      </div>
     </div>
-    <button type="button" id="next">Next</button>
+  </section>
 
-  </div>
+  <section id="questionSection">
+    <div class="container">
+      <div id="question"></div>
+      <div id="answers">
+        <button type="button" id="0"></button>
+        <button type="button" id="1"></button>
+        <button type="button" id="2"></button>
+        <button type="button" id="3"></button>
+      </div>
+      <button type="button" id="next">Next</button>
+    </div>
+  </section>
 
+  <section id="results">
+
+  </section>
 
   <script src="./index.js"></script>
 </body>
