@@ -84,6 +84,11 @@ const startGameButton = document.getElementById("startGameButton");
 const userNameForm = document.getElementById("enterNameForm");
 const goButton = document.getElementById("goButton");
 const inputUserName = document.getElementById("inputUserName");
+
+const LeaderboardButton = document.getElementById("LeaderboardButton");
+const userNameList = document.getElementById("userNameList");
+const closeButton = document.getElementById("closeButton");
+
 const userAnswers = [];
 
 const calculateScore = (userAnswers) => {
@@ -124,6 +129,16 @@ const addScoreToLeaderBored = (result) => {
 	}
 
 	localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+};
+
+//show leaderBored :-
+const toggleLeaderBored = () => {
+	style = document.getElementById("results").style.display;
+	if (style === "none") {
+		document.getElementById("results").style.display = "block";
+	} else {
+		document.getElementById("results").style.display = "none";
+	}
 };
 
 //disabled buttons after answer
@@ -170,3 +185,13 @@ goButton.onclick = () => {
 		(userNameForm.style.visibility = "hidden"),
 		localStorage.setItem("userName", inputUserName.value));
 };
+//create leaderbored :)
+// leaderboard.forEach((user) => {
+// 	userNameList.innerHTML +=
+// 		"<div class='scores'>" +
+// 		`<div class='leaderboardName'>${user.username}</div>` +
+// 		`<div class='leaderboardScore'>${user.score}</div></div>`;
+// });
+
+LeaderboardButton.onclick = toggleLeaderBored;
+document.getElementById("closeButton").onclick = toggleLeaderBored;
