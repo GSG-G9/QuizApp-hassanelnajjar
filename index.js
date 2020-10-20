@@ -81,7 +81,7 @@ const inputUserName = document.getElementById("inputUserName");
 const userNameList = document.getElementById("userNameList");
 const closeButton = document.getElementById("closeButton");
 const userAnswers = [];
-
+const questionCounter = document.getElementById("questionCounter");
 const calculateScore = (userAnswers) => {
 	return data.filter((item, index) => {
 		return item.correctAnswer === userAnswers[index];
@@ -99,6 +99,8 @@ const isNameExist = () => {
 };
 
 const fillQuestions = (index) => {
+	nextButton.innerText = "Next";
+	questionCounter.innerText = `${index + 1}/${data.length}`;
 	questionDiv.innerText = data[index].question;
 	answers.forEach((answerButton) => {
 		answerButton.innerText = data[index].answers[+answerButton.id];
@@ -161,38 +163,47 @@ const checkUserName = () => {
 };
 
 //disabled buttons after answer
-answers.forEach(
-	(answer) =>
-		(answer.onclick = () => {
-			userAnswers.push(answer.innerText);
-			answer.style.background = "rgba(6, 230, 6, 0.4)";
-			answers.forEach((answer) => (answer.disabled = true));
-			nextButton.style.visibility = "visible";
-		})
-);
 
-//Make next button and enabled buttons after next
-let index = 1;
-nextButton.onclick = () => {
-	if (index == 9) {
-		nextButton.innerText = "Show Result";
-	}
-	if (index >= 10) {
-		addScoreToLeaderBored(calculateScore(userAnswers));
-		return;
-	}
-	fillQuestions(index);
-	answers.forEach((answer) => {
+const restButtonShape = (answerButtons) => {
+	answerButtons.forEach((answer) => {
 		answer.style.background = "";
 		answer.disabled = false;
 	});
-
-	nextButton.style.visibility = "hidden";
-
-	index++;
 };
 
-fillQuestions(0);
+const restQuestions = () => {
+	fillQuestions(0);
+	restQuestionsAndAnswers();
+};
+//Make next button and enabled buttons after next
+const restQuestionsAndAnswers = () => {
+	answers.forEach(
+		(answer) =>
+			(answer.onclick = () => {
+				userAnswers.push(answer.innerText);
+				answer.style.background = "rgba(6, 230, 6, 0.4)";
+				answers.forEach((answer) => (answer.disabled = true));
+				nextButton.style.visibility = "visible";
+			})
+	);
+	let index = 1;
+	nextButton.onclick = () => {
+		if (index == 9) {
+			nextButton.innerText = "Show Result";
+		}
+		if (index >= 10) {
+			addScoreToLeaderBored(calculateScore(userAnswers));
+			moveToLeaderBoredLocation();
+			restButtonShape(answers);
+			restQuestions();
+			return;
+		}
+		fillQuestions(index);
+		restButtonShape(answers);
+		nextButton.style.visibility = "hidden";
+		index++;
+	};
+};
 
 startGameButton.onclick = () => {
 	userNameForm.style.visibility = "visible";
@@ -206,8 +217,6 @@ goButton.onclick = () => {
 };
 
 // create leaderbored :)
-
+restQuestions();
 document.getElementById("LeaderboardButton").onclick = toggleLeaderBored;
 document.getElementById("closeButton").onclick = toggleLeaderBored;
-
-const restQuestions = () => {};

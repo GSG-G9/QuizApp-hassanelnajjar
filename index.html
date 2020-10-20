@@ -27,30 +27,33 @@
 
   <section id="welcomeSection">
     <div class="container welcome-div" id="description">
-      <div>
+      <div class="leftPadding">
         <h1>Quiz App</h1>
       </div>
-      <div>
+      <div class="leftPadding">
         <p>A quiz is a form of game or mind sport in which players attempt to answer questions correctly. It is a game
           to test knowledge about a certain subject. In this App ,there are 10 short question - Just press on
-          <strong>Start Game</strong>
+          <strong onclick="checkUserName()">Start Game</strong>
           and enjoy :)
           <!-- In some countries, a quiz is also a brief assessment used in
           education and similar fields to measure growth in knowledge, abilities, and/or skills. -->
         </p>
       </div>
-      <div>
+      <div class="leftPadding">
         <button type="button" id="LeaderboardButton">Leaderboard</button>
         <button type="button" id="startGameButton">Start Game</button>
       </div>
       <div id="enterNameForm">
-        <input type="text" name="name" placeholder="Your Name !!" id="inputUserName">
+        <input type="text" name="name" placeholder="Enter Your Name !!" id="inputUserName">
         <button id="goButton">Go</button>
       </div>
     </div>
   </section>
   <section id="questionSection" class="container">
     <div class="questions-container">
+      <div id="questionCounter">
+        1/10
+      </div>
       <div id="question">
       </div>
       <div id="answers">
