@@ -1,4 +1,4 @@
-let data = [
+let Questions = [
 	{
 		question:
 			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsum nobis, molestias debitis temporibus eius dolore natus quibusdam minus ratione.",
@@ -56,19 +56,50 @@ let data = [
 		correctAnswer: "a",
 	},
 ];
+let leaderboardBasic = [
+	{
+		username: "Hassan",
+		score: 0,
+	},
+];
 
+//set localstorageData
+localStorage.getItem("data") ||
+	localStorage.setItem("data", JSON.stringify(Questions));
+
+localStorage.getItem("leaderboard") ||
+	localStorage.setItem("leaderboard", JSON.stringify(leaderboardBasic));
+
+//get data :)
+
+data = JSON.parse(localStorage.getItem("data"));
+leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+
+//variables :)
 const nextButton = document.getElementById("next");
 nextButton.style.visibility = "hidden";
 const questionDiv = document.getElementById("question");
 const answers = document.querySelectorAll("#answers button");
+const startGameButton = document.getElementById("startGameButton");
+const userNameForm = document.getElementById("enterNameForm");
+const goButton = document.getElementById("goButton");
+const inputUserName = document.getElementById("inputUserName");
 const userAnswers = [];
 
 const calculateScore = (userAnswers) => {
-	console.log(
-		data.filter((item, index) => {
-			return item.correctAnswer === userAnswers[index];
-		}).length
+	return data.filter((item, index) => {
+		return item.correctAnswer === userAnswers[index];
+	}).length;
+};
+
+//leaderBored
+const isNameExist = () => {
+	let arr = leaderboard.filter(
+		(x) => x.username === localStorage.getItem("userName")
 	);
+	let indexOfUserName = leaderboard.indexOf(arr[0]);
+
+	return arr.length > 0 && indexOfUserName;
 };
 
 const fillQuestions = (index) => {
@@ -77,11 +108,30 @@ const fillQuestions = (index) => {
 		answerButton.innerText = data[index].answers[+answerButton.id];
 	});
 };
+
+const addScoreToLeaderBored = (result) => {
+	let isNameExitValue = isNameExist();
+	if (isNameExitValue >= 0) {
+		leaderboard[isNameExitValue] = {
+			username: localStorage.getItem("userName"),
+			score: result,
+		};
+	} else {
+		leaderboard.push({
+			username: localStorage.getItem("userName"),
+			score: result,
+		});
+	}
+
+	localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+};
+
 //disabled buttons after answer
 answers.forEach(
 	(answer) =>
 		(answer.onclick = () => {
 			userAnswers.push(answer.innerText);
+			answer.style.background = "rgba(6, 230, 6, 0.4)";
 			answers.forEach((answer) => (answer.disabled = true));
 			nextButton.style.visibility = "visible";
 		})
@@ -94,13 +144,29 @@ nextButton.onclick = () => {
 		nextButton.innerText = "Show Result";
 	}
 	if (index >= 10) {
-		calculateScore(userAnswers);
+		addScoreToLeaderBored(calculateScore(userAnswers));
 		return;
 	}
 	fillQuestions(index);
-	answers.forEach((answer) => (answer.disabled = false));
+	answers.forEach((answer) => {
+		answer.style.background = "";
+		answer.disabled = false;
+	});
+
 	nextButton.style.visibility = "hidden";
+
 	index++;
 };
 
 fillQuestions(0);
+
+startGameButton.onclick = () => {
+	userNameForm.style.visibility = "visible";
+};
+
+goButton.onclick = () => {
+	inputUserName.value &&
+		((location.href = "#questionSection"),
+		(userNameForm.style.visibility = "hidden"),
+		localStorage.setItem("userName", inputUserName.value));
+};
