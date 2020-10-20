@@ -119,8 +119,8 @@ const addScoreToLeaderBored = (result) => {
 			score: result,
 		});
 	}
+	console.log(leaderbored);
 	localStorage.setItem("leaderbored", JSON.stringify(leaderbored));
-	localStorage.removeItem("userName");
 };
 
 //show leaderBored :-
@@ -131,11 +131,6 @@ const toggleLeaderBored = () => {
 	} else {
 		document.getElementById("results").style.display = "none";
 	}
-
-	document.querySelectorAll(".scores").forEach((node) => node.remove());
-	leaderbored.forEach((user) => {
-		userNameList.appendChild(createLeadBoredDiv(user));
-	});
 };
 
 const createLeadBoredDiv = (user) => {
@@ -145,19 +140,6 @@ const createLeadBoredDiv = (user) => {
 		`<div class='leaderboardName'>${user.username}</div>` +
 		`<div class='leaderboardScore'>${user.score}</div></div>`;
 	return scoresDiv;
-};
-
-const moveToLeaderBoredLocation = () => {
-	location.href = "#";
-	toggleLeaderBored();
-};
-
-const checkUserName = () => {
-	if (localStorage.getItem("userName")) {
-		location.href = "#questionSection";
-	} else {
-		startGameButton.click();
-	}
 };
 
 //disabled buttons after answer
@@ -207,7 +189,11 @@ goButton.onclick = () => {
 
 // create leaderbored :)
 
-document.getElementById("LeaderboardButton").onclick = toggleLeaderBored;
-document.getElementById("closeButton").onclick = toggleLeaderBored;
+document.getElementById("LeaderboardButton").onclick = () => {
+	leaderbored.forEach((user) => {
+		userNameList.appendChild(createLeadBoredDiv(user));
+	});
 
-const restQuestions = () => {};
+	toggleLeaderBored();
+};
+document.getElementById("closeButton").onclick = toggleLeaderBored();
