@@ -2,9 +2,9 @@
 
 # introduction
 
-## In Quiz App you'll answer 10 Questions in row and then you can view youe score in leaderBored
+### In Quiz App you'll answer 10 Questions in row and then you can view youe score in leaderBored
 
-## It use LocalStorage - Browser database- So your score will be saved in Your Browser
+### It use LocalStorage - Browser database- So your score will be saved in Your Browser
 
 ---
 
@@ -27,15 +27,15 @@
 
 # Html
 
-### I used html5 in designing the file and using a header tag at the top and then make 3 sections tag
+I used html5 in designing the file and using a header tag at the top and then make 3 sections tag
 
 # Css
 
-### I used CSS3 without any other framework
+I used CSS3 without any other framework
 
 # js
 
-### I separate the js file into mutiple smaller files
+I separate the js file into mutiple smaller files
 
 1. index.js
 2. functionsList.js
@@ -46,16 +46,16 @@
 
 ## index.js
 
-#### This the main file and here I put the invoke the main methods only
+This the main file and here I put the invoke the main methods only
 
 ## FunctionsList.js
 
-#### This is a function list files where i put all my functions and i make a clear comments about every one
+This is a function list files where i put all my functions and i make a clear comments about every one
 
 ## Varibales.js
 
-#### This is a declartion of all used varibales in this project - and also list of DOM reference elements
+This is a declartion of all used varibales in this project - and also list of DOM reference elements
 
 ## questions.js
 
-#### This the container of the all questions - here i define the questions and store it in LocalStorage
+This the container of the all questions - here i define the questions and store it in LocalStorage
