@@ -77,20 +77,7 @@ const createLeadBoredDiv = (user) => {
 //toggle leaderbored display to none - block
 //remove the current leaderbored and make new one
 //sort leaderbored items DEC based on score
-const toggleLeaderBored = () => {
-	style = document.getElementById("results").style.display;
-	if (style === "none" || style === "") {
-		document.getElementById("results").style.display = "block";
-	} else {
-		document.getElementById("results").style.display = "none";
-	}
-	document.querySelectorAll(".scores").forEach((node) => node.remove());
-	leaderbored
-		.sort((a, b) => b.score - a.score) // change items orders to Decs
-		.forEach((user) => {
-			userNameList.appendChild(createLeadBoredDiv(user));
-		});
-};
+
 
 //move to leader bored location in the home page - then run toggle leader bored
 const moveToLeaderBoredLocation = () => {
