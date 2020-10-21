@@ -83,6 +83,12 @@ let Questions = [
 		answers: ["On Your Legs", "Hospital.", "On a Car", "On Ground"],
 		correctAnswer: "Hospital.",
 	},
+	{
+		question:
+			"ما هي نتيجة خسارة  الريال ضد شاختار في دوري الابطال الشوط الاول امبارح  :)",
+		answers: ["3-0", "4-0", "5-0", "6-0"],
+		correctAnswer: "3-0",
+	},
 ];
 
 //set localstorageData when app start
