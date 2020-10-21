@@ -12,7 +12,7 @@ const userNameList = document.getElementById("userNameList");
 const closeButton = document.getElementById("closeButton");
 const questionCounter = document.getElementById("questionCounter");
 const LeaderboardButton = document.getElementById("LeaderboardButton");
-
+const timerBar = document.getElementById("timerBar");
 //Global Variables
 let userAnswers = [];
 let data;

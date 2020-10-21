@@ -46,18 +46,20 @@ check is name is exist based on isNameExist and then if
 -- add leaderbored data to localstorage
 -- remove the current user name form localstorage
 */
-const addScoreToLeaderBored = (result) => {
+const addScoreToLeaderBored = (result, time) => {
 	let isNameExitValue = isNameExist();
 
 	if (isNameExitValue > 0 || isNameExitValue === 0) {
 		leaderbored[isNameExitValue] = {
 			username: localStorage.getItem("userName"),
 			score: result,
+			time,
 		};
 	} else {
 		leaderbored.push({
 			username: localStorage.getItem("userName"),
 			score: result,
+			time,
 		});
 	}
 	localStorage.setItem("leaderbored", JSON.stringify(leaderbored));
@@ -70,7 +72,8 @@ const createLeadBoredDiv = (user) => {
 	scoresDiv.classList = "scores";
 	scoresDiv.innerHTML =
 		`<div class='leaderboardName'>${user.username}</div>` +
-		`<div class='leaderboardScore'>${user.score}</div></div>`;
+		`<div class='leaderboardScore'>${user.score}</div></div>` +
+		`<div class='leaderboardScore'>${user.time} s</div></div>`;
 	return scoresDiv;
 };
 
@@ -158,12 +161,14 @@ const restQuestionsAndAnswers = () => {
   */
 	let index = 1;
 	nextButton.onclick = () => {
+		timer();
 		nextButton.innerText = "Next";
 		if (index >= 9) {
 			nextButton.innerText = "Show Result";
 		}
 		if (index >= 10) {
-			addScoreToLeaderBored(calculateScore(userAnswers));
+			Timer.stop();
+			addScoreToLeaderBored(calculateScore(userAnswers), Timer.getDuration());
 			moveToLeaderBoredLocation();
 			return;
 		}
@@ -203,13 +208,35 @@ const onClickListener = () => {
 	};
 
 	goButton.onclick = () => {
-		inputUserName.value &&
-			(setEveryThingClean(),
-			(location.href = "#questionSection"),
-			(userNameForm.style.visibility = "hidden"),
-			localStorage.setItem("userName", inputUserName.value));
+		if (inputUserName.value) {
+			setEveryThingClean();
+			timer();
+			Timer.start();
+			location.href = "#questionSection";
+			userNameForm.style.visibility = "hidden";
+			localStorage.setItem("userName", inputUserName.value);
+		}
 	};
 
 	LeaderboardButton.onclick = toggleLeaderBored;
 	closeButton.onclick = toggleLeaderBored;
 };
+
+const timer = () => {
+	timerBar.classList.remove("round-time-bar");
+	timerBar.offsetWidth;
+	timerBar.classList.add("round-time-bar");
+};
+
+class Timer {
+	static start() {
+		this.duration = Date.now();
+	}
+	static stop() {
+		this.duration = Date.now() - this.duration;
+	}
+
+	static getDuration() {
+		return Math.floor(this.duration / 1000);
+	}
+}

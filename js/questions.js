@@ -99,6 +99,7 @@ localStorage.getItem("leaderbored") ||
 			{
 				username: "Hassan",
 				score: 0,
+				time: 0,
 			},
 		])
 	);
