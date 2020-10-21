@@ -113,7 +113,7 @@ height: 100%;
 
 #description::after{
   content:'';
-  background:url('./2019-11-12-quiz-site.jpg');
+  background:url('../img/img.jpg');
   opacity: 0.20;
   position: absolute;
   top:0px;
@@ -169,6 +169,7 @@ height: 100%;
 
 
 #next{
+  visibility: hidden;
   font-size: 20px;
   height: 10%;
   width: 20%;
