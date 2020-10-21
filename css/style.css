@@ -278,3 +278,23 @@ height: 100%;
   border-color: #28a745;
   background:rgb(40, 167, 69,0.2);
 }
+
+#timerBar{
+  position: absolute;
+  top:10%;
+  right: 0;
+  width: 100%;
+}
+
+.round-time-bar div {
+  height: 10px;
+  background: linear-gradient(to bottom, #28a745,white);
+  animation: roundtime calc(var(--duration) * 1s) forwards;
+  transform-origin: left center;
+}
+
+@keyframes roundtime {
+  to {
+    transform: scaleX(0);
+  }
+}
