@@ -232,8 +232,12 @@ height: 100%;
   margin-top: 1em;
 }
 
-#results{
+
+.result-display{
   display: none;
+}
+
+#results{
   border:2px solid;
   border-radius:0.25rem;
   border-color: #28a745;
@@ -257,7 +261,7 @@ height: 100%;
   align-items:center;
 }
 
-.leaderboardName,.leaderboardScore{
+.leaderboardItem{
   width: 50%;
   padding: 0.50em;
   font-size: 20px;

@@ -4,6 +4,7 @@ const createRandomQuestions = () => {
 	let AllQuestionsRandom = JSON.parse(localStorage.getItem("data")).sort(
 		() => 0.5 - Math.random()
 	);
+	console.log(AllQuestionsRandom);
 	return AllQuestionsRandom.slice(0, 10);
 };
 
@@ -47,7 +48,7 @@ check is name is exist based on isNameExist and then if
 -- remove the current user name form localstorage
 */
 const addScoreToLeaderBored = (result, time) => {
-	let isNameExitValue = isNameExist();
+	const isNameExitValue = isNameExist();
 
 	if (isNameExitValue > 0 || isNameExitValue === 0) {
 		leaderbored[isNameExitValue] = {
@@ -67,33 +68,34 @@ const addScoreToLeaderBored = (result, time) => {
 };
 
 //Create User Div with user name - user score inside leaderbored
-const createLeadBoredDiv = (user) => {
-	scoresDiv = document.createElement("div");
-	scoresDiv.classList = "scores";
-	scoresDiv.innerHTML =
-		`<div class='leaderboardName'>${user.username}</div>` +
-		`<div class='leaderboardScore'>${user.score}</div></div>` +
-		`<div class='leaderboardScore'>${user.time} s</div></div>`;
-	return scoresDiv;
+const createLeadBoredDivs = (users) => {
+	return users.map((user) => {
+		scoresDiv = document.createElement("div");
+		scoresDiv.classList.add("scores");
+		scoresDiv.append(
+			...Object.keys(user).map((key) => {
+				div = document.createElement("div");
+				div.classList.add("leaderboardItem");
+				div.innerText = user[key] + (key === "time" ? " s" : "");
+				return div;
+			})
+		);
+		return scoresDiv;
+	});
 };
 
 //toggle leaderbored display to none - block
 //remove the current leaderbored and make new one
 //sort leaderbored items DEC based on score
 const toggleLeaderBored = () => {
+	//remove the current leader bored
 	document.querySelectorAll(".scores").forEach((node) => node.remove());
-	leaderbored
-		.sort((a, b) => b.score - a.score) // change items orders to Decs
-		.forEach((user) => {
-			userNameList.appendChild(createLeadBoredDiv(user));
-		});
-
-	style = document.getElementById("results").style.display;
-	if (style === "none" || style === "") {
-		document.getElementById("results").style.display = "block";
-	} else {
-		document.getElementById("results").style.display = "none";
-	}
+	// change items orders to DEC order
+	leaderbored.sort((a, b) => b.score - a.score);
+	//Append Divs into Leader Bored
+	userNameList.append(...createLeadBoredDivs(leaderbored));
+	//Display the leaderbored
+	document.getElementById("results").classList.toggle("result-display");
 };
 
 //move to leader bored location in the home page - then run toggle leader bored
