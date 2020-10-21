@@ -1,13 +1,13 @@
 let Questions = [
 	{
 		question: "Ali Age ?",
-		answers: [25, 27, 29, 31],
-		correctAnswer: 31,
+		answers: ["25", "27", "29", "31"],
+		correctAnswer: "31",
 	},
 	{
 		question: "Second Question",
 		answers: ["1", "2", "3", "4"],
-		correctAnswer: "a",
+		correctAnswer: "1",
 	},
 	{
 		question: "Third Question",
@@ -17,7 +17,7 @@ let Questions = [
 	{
 		question: "Forth Question",
 		answers: ["1", "2", "3", "4"],
-		correctAnswer: "a",
+		correctAnswer: "1",
 	},
 	{
 		question: "Fifth Question",
@@ -27,7 +27,7 @@ let Questions = [
 	{
 		question: "Sixth Question",
 		answers: ["1", "2", "3", "4"],
-		correctAnswer: "a",
+		correctAnswer: "1",
 	},
 	{
 		question: "Seventh Question",
@@ -37,7 +37,7 @@ let Questions = [
 	{
 		question: "Eighth Question",
 		answers: ["1", "2", "3", "4"],
-		correctAnswer: "a",
+		correctAnswer: "1",
 	},
 	{
 		question: "Ninth Question",
@@ -47,7 +47,37 @@ let Questions = [
 	{
 		question: "Tenth Question",
 		answers: ["1", "2", "3", "4"],
-		correctAnswer: "a",
+		correctAnswer: "1",
+	},
+	{
+		question: "11 Question",
+		answers: ["1", "2", "3", "4"],
+		correctAnswer: "1",
+	},
+	{
+		question: "12 Question",
+		answers: ["1", "2", "3", "4"],
+		correctAnswer: "1",
+	},
+	{
+		question: "13 Question",
+		answers: ["1", "2", "3", "4"],
+		correctAnswer: "1",
+	},
+	{
+		question: "14 Question",
+		answers: ["1", "2", "3", "4"],
+		correctAnswer: "1",
+	},
+	{
+		question: "15 Question",
+		answers: ["1", "2", "3", "4"],
+		correctAnswer: "1",
+	},
+	{
+		question: "16 Question",
+		answers: ["1", "2", "3", "4"],
+		correctAnswer: "1",
 	},
 ];
 let leaderboredBasic = [
@@ -66,7 +96,15 @@ localStorage.getItem("leaderbored") ||
 
 //get data :)
 
-data = JSON.parse(localStorage.getItem("data"));
+const createRandomQuestions = () => {
+	let AllQuestionsRandom = JSON.parse(localStorage.getItem("data")).sort(
+		() => 0.5 - Math.random()
+	);
+
+	return AllQuestionsRandom.slice(0, 10);
+};
+data = createRandomQuestions();
+
 leaderbored = JSON.parse(localStorage.getItem("leaderbored"));
 
 //variables :)
@@ -80,8 +118,9 @@ const goButton = document.getElementById("goButton");
 const inputUserName = document.getElementById("inputUserName");
 const userNameList = document.getElementById("userNameList");
 const closeButton = document.getElementById("closeButton");
-const userAnswers = [];
+let userAnswers = [];
 const questionCounter = document.getElementById("questionCounter");
+
 const calculateScore = (userAnswers) => {
 	return data.filter((item, index) => {
 		return item.correctAnswer === userAnswers[index];
@@ -135,9 +174,11 @@ const toggleLeaderBored = () => {
 	}
 
 	document.querySelectorAll(".scores").forEach((node) => node.remove());
-	leaderbored.forEach((user) => {
-		userNameList.appendChild(createLeadBoredDiv(user));
-	});
+	leaderbored
+		.sort((a, b) => b.score - a.score) // change items orders to Decs
+		.forEach((user) => {
+			userNameList.appendChild(createLeadBoredDiv(user));
+		});
 };
 
 const createLeadBoredDiv = (user) => {
@@ -196,6 +237,8 @@ const restQuestionsAndAnswers = () => {
 			moveToLeaderBoredLocation();
 			restButtonShape(answers);
 			restQuestions();
+			userAnswers = [];
+			data = createRandomQuestions();
 			return;
 		}
 		fillQuestions(index);
