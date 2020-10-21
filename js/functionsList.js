@@ -4,7 +4,6 @@ const createRandomQuestions = () => {
 	let AllQuestionsRandom = JSON.parse(localStorage.getItem("data")).sort(
 		() => 0.5 - Math.random()
 	);
-	console.log(AllQuestionsRandom);
 	return AllQuestionsRandom.slice(0, 10);
 };
 
@@ -96,6 +95,11 @@ const toggleLeaderBored = () => {
 	userNameList.append(...createLeadBoredDivs(leaderbored));
 	//Display the leaderbored
 	document.getElementById("results").classList.toggle("result-display");
+};
+const hideLeaderBored = () => {
+	if (document.getElementById("results").className !== "result-display") {
+		toggleLeaderBored();
+	}
 };
 
 //move to leader bored location in the home page - then run toggle leader bored
@@ -216,6 +220,7 @@ const onClickListener = () => {
 			Timer.start();
 			location.href = "#questionSection";
 			userNameForm.style.visibility = "hidden";
+			hideLeaderBored();
 			localStorage.setItem("userName", inputUserName.value);
 		}
 	};
