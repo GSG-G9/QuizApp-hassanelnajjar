@@ -6,6 +6,7 @@
 
 ### It use LocalStorage - Browser database- So your score will be saved in Your Browser
 
+### Press at this (link)[https://gsg-g9.github.io/QuizApp-hassanelnajjar/] to play :)
 ---
 
 ## How To Play :-
